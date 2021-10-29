@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine.js Demo</title>
+    <meta name="author" content="Istvan Pitju Balogh">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/png">
+
+
+    <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@1.2.x/dist/index.min.js" defer></script>
+
+
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    
+
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body 
+    class="bg-gray-300 text-gray-800"
+    >
+    <header 
+        x-data="{ atTop: true}"
+        @scroll.window="atTop = (window.pageYOffset > 20) ? false : true"
+        class="border-t-4 border-blue-700 bg-white shadow-md sticky top-0"
+        :class="{ 'bg-gray-300 border-none' : !atTop}"
+    >
+        <nav 
+            x-data="{ isOpen: false}"
+            class="mx-auto px-8 md:px-16 flex items-center justify-between py-4"
+        >
+            <div class="hidden md:flex space-x-8">
+                <div><a href="#" class="px-1 font-bold text-xl uppercase tracking-widest hover:text-blue-400 hover:scale-130 transform duration-300 border-b-2 border-blue-800">Home</a></div>
+                <div><a href="image-gallery.html" class="font-bold text-xl uppercase tracking-widest hover:text-blue-400 hover:scale-130 transform duration-300">Gallery</a></div>
+                <div><a href="faq.html" class="font-bold text-xl uppercase tracking-widest hover:text-blue-400 hover:scale-130 transform duration-300">FAQ</a></div>
+            </div>
+            <div 
+                x-data="{ isOpen: false}"
+                class="block md:hidden"
+            >
+                <button 
+                    type="button" 
+                    class="block p-2 focus:outline-none"
+                    @click="isOpen = true" 
+                >
+                    <span class="sr-only">Mobile Menu</span>
+                    <span class="relative block w-6 ">
+                        <span aria-hidden="true" class="block absolute h-0.5 w-6 bg-gray-800 transform transition duration-300 ease-in-out" :class="{'rotate-45': isOpen, ' -translate-y-1.5': !isOpen }"></span>
+                        <span aria-hidden="true" class="block absolute h-0.5 w-6 bg-gray-800 transform transition duration-300 ease-in-out" :class="{'opacity-0': isOpen }"></span>
+                        <span aria-hidden="true" class="block absolute h-0.5 w-6 bg-gray-800 transform transition duration-300 ease-in-out" :class="{'-rotate-45': isOpen, ' translate-y-1.5': !isOpen}"></span>
+                    </span>
+                </button>
+
+                <div
+                    class="absolute inset-0 bg-white border border-r h-screen w-48 text-center" 
+                    x-show="isOpen"
+                    @click.away="isOpen = false"
+                    x-transition:enter="transition ease-out duration-300 -ml-64"
+                    x-transition:enter-start=""
+                    x-transition:enter-end="transform translate-x-64"
+                    x-transition:leave="transition ease-out duration-300"
+                    x-transition:leave-start=""
+                    x-transition:leave-end="transform -translate-x-64"
+                >
+                    <div class="flex justify-end">
+                        <button class="text-4xl mr-3 mt-1 active:scale-110 transition duration-150" @click="isOpen = false">&times;</button>
+                    </div>
+                    <div class="my-4">
+                        <a href="#"
+                        class="px-1 font-bold text-xl uppercase tracking-widest hover:text-blue-400 hover:scale-130 transform duration-300 border-b-2 border-blue-800"
+                        >Home</a> 
+                    </div>
+                    <div class="my-4">
+                        <a href="image-gallery.html"
+                        class="font-bold text-xl uppercase tracking-widest hover:text-blue-400 hover:scale-130 transform duration-300"
+                        >Gallery</a>
+                    </div>
+                    <div class="my-4">
+                        <a href="faq.html"
+                        class="font-bold text-xl uppercase tracking-widest hover:text-blue-400 hover:scale-130 transform duration-300"
+                        >FAQ</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <button 
+                @click="isOpen = !isOpen"
+                @keydown.escape="isOpen = false"
+                class="flex items-center">
+                    <img 
+                        src="./img/avatar.jpg" 
+                        alt="avatar image"
+                        class="w-10 h-10 rounded-full"
+                    >
+                    <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28"><path d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z" class="heroicon-ui"></path></svg>
+                </button>
+                <div 
+                x-show="isOpen"
+                @click.away="isOpen = false"
+                class="absolute right-0 bg-white shadow overflow-hidden rounded w-48 mt-2 py-1 border z-20">
+                    <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-gray-600"><path d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z" class="heroicon-ui"></path></svg>
+                        <span class="pl-2">Account</span>
+                    </a>
+ 
+                    <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="text-gray-600"><path d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" class="heroicon-ui"></path></svg>
+                        <span class="pl-2">Settings</span>
+                    </a>
+                    
+                    <a href="#" class="flex items-center px-3 py-3 hover:bg-gray-200">
+                        <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="text-gray-600"><path d="M0 0h24v24H0z" fill="none"></path><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"></path></svg>
+                        <span class="pl-2">Logout</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <h1 class="mx-auto py-12 text-3xl md:text-5xl text-center">Alpine.js Demo Site</h1>
+    <div 
+    x-data="{ 
+        tab: 'package2',
+        packages: [
+            {
+            slug: 'package2',
+            name: 'Package S',
+            description: 'If the end of your contract is approaching, but you\'d like some more time to find the right deal and best internet provider for you, you can sign up for regular email updates from us at Uswitch to get expert insight and advice. We\'ll also show you some of the latest money-saving deals on our site.',
+            color: 'red-700'
+            },
+            {
+                slug: 'package3',
+                name: 'Package M',
+                description: 'Broadband and TV deals Bundling these services together could benefit you greatly if you regularly use both, as it will put them into a single monthly bill. But it\'s only worth it if you actually want to watch enough of the channels it gives you access to.',
+                color: 'blue-700'
+            },
+            {
+                slug: 'package4',
+                name: 'Package L',
+                description: 'Average speeds are based on the download speeds that at least 50% of customers get at peak time. Remember that this is a rough guide - you may see higher or lower speeds than those listed here. Average speeds are based on upload speeds that at least 50% of customers get at peak time. The faster the upload speed, the quicker it will be to do things like send emails and post photos / videos to the web.',
+                color: 'green-700'
+            },
+            {
+                slug: 'package5',
+                name: 'Package XL',
+                description: 'Truly unlimited broadband is perfect for heavy downloaders, student households or families sharing their connection because it does not apply either a fair usage policy or traffic management. This lets you download as much as you want, whenever you want, with your broadband speed acting as the only restricting factor. Some packages offer unlimited broadband without a fair usage policy but with traffic management to make sure that very heavy downloaders do not affect your connection at peak times.',
+                color: 'indigo-700'
+            }
+        ]
+    }"
+    class="w-4/5 md:w-3/5 lg:w-2/5 h-4/5 bg-white shadow-md rounded-t-lg mx-auto pt-4 px-4 md:px-8 mb-6">
+        <h2 class="text-2xl mb-2 text-blue-900">We've got you covered</h2>
+        <h3 class="text-xl mb-4 tracking-wide">The choice is yours</h3>
+        <ul class="grid grid-cols-2 sm:flex pb-2 sm:pb-1 ">
+            <template x-for="package in packages" :key="package.name">
+                <li>
+                    <button
+                        @click.prevent="tab = package.slug"
+                        class="text-xs sm:text-sm rounded-t py-2 px-2 font-semibold uppercase tracking-wide hover:opacity-60 bg-white"
+                        :class="{[`border-${package.color} text-${package.color}`]:true, 'border-l-2 border-r-2 border-t-2' : tab === package.slug}"
+                        x-text="package.name"
+                        ></button>
+                </li>
+            </template>
+        </ul>    
+
+
+        <div class="max-w-xl mb-6 pb-6">
+            <template x-for="package in packages" :key="package.slug" x-ref="abc">
+                <div
+                    class="pl-2 border-l-2 text-sm sm:text-base"
+                    :class="{[`border-${package.color}`]:true }"
+                    x-show="tab === package.slug"
+                    x-text="package.description"
+                    x-data="{}"
+                >
+                    <!-- <p x-text="$parent.package.name"></p>
+                    <p ></p> -->
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <div class="w-4/5 md:w-3/5 lg:w-2/5 h-4/5 bg-white rounded-b-lg shadow-md mx-auto pt-4 px-6 md:px-8">
+        <p class="pb-6">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est adipisci eveniet provident? Soluta ullam veritatis inventore aliquam in officia quod veniam consectetur consequuntur consequatur maxime aut sed cumque quas fuga ratione, nesciunt iusto esse reiciendis aliquid? Repellendus expedita quia assumenda, deserunt error, doloremque explicabo ea, rerum autem soluta enim maiores? Assumenda ut dignissimos quam, quisquam autem quis atque, aliquam ipsam repellat non eligendi numquam? Saepe dicta ex, quidem a cumque officiis, ducimus ea pariatur blanditiis beatae quasi voluptas? Optio at, inventore architecto molestias assumenda error soluta! Repellendus reiciendis cupiditate nihil sint cum, cumque voluptatem dolore aliquam porro dolores vero harum?</p>
+    </div>
+
+    <footer class="w-4/5 md:w-3/5 lg:w-2/5 mx-auto mt-6 h-16 bg-white">
+        <div class="text-center flex justify-center">
+            <p class="font-black py-5">ptj &copy; 2021</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<script>
+    // x - data="popuplatePackages()"
+    // x - init="getPackages()"
+
+
+
+    // function popuplatePackages() {
+    //     return {
+    //         packages: [],
+    //         init() {
+    //             this.getPackages()
+    //         },
+    //         getPackages() {
+    //             fetch('./jsons/packages.json', {
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'Accept': 'application/json'
+    //                 }
+    //             })
+    //             .then(res => res.json())
+    //             .then(data => this.packages = data)
+    //         }
+    //     }
+    // }
+</script>

@@ -1,0 +1,32 @@
+[
+    {
+        "slug": "img1",
+        "name": "image-1",
+        "src": "./img/image-1.jpg"
+    },
+    {
+        "slug": "img2",
+        "name": "image-2",
+        "src": "./img/image-2.jpg"
+    },
+    {
+        "slug": "img3",
+        "name": "image-3",
+        "src": "./img/image-3.jpg"
+    },
+    {
+        "slug": "img4",
+        "name": "image-4",
+        "src": "./img/image-4.jpg"
+    },
+    {
+        "slug": "img5",
+        "name": "image-5",
+        "src": "./img/image-5.jpg"
+    },
+    {
+        "slug": "img6",
+        "name": "image-6",
+        "src": "./img/image-6.jpg"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "slug": "package2",
+        "name": "Package S",
+        "description": "If the end of your contract is approaching, but you'd like some more time to find the right deal and best internet provider for you, you can sign up for regular email updates from us at Uswitch to get expert insight and advice. We'll also show you some of the latest money-saving deals on our site.",
+        "color": "red-700"
+    },
+    {
+        "slug": "package3",
+        "name": "Package M",
+        "description": "Broadband and TV deals Bundling these services together could benefit you greatly if you regularly use both, as it will put them into a single monthly bill. But it's only worth it if you actually want to watch enough of the channels it gives you access to.",
+        "color": "blue-700"
+    },
+    {
+        "slug": "package4",
+        "name": "Package L",
+        "description": "Average speeds are based on the download speeds that at least 50% of customers get at peak time. Remember that this is a rough guide - you may see higher or lower speeds than those listed here. Average speeds are based on upload speeds that at least 50% of customers get at peak time. The faster the upload speed, the quicker it will be to do things like send emails and post photos / videos to the web.",
+        "color": "green-700"
+    },
+    {
+        "slug": "package5",
+        "name": "Package XL",
+        "description": "Truly unlimited broadband is perfect for heavy downloaders, student households or families sharing their connection because it does not apply either a fair usage policy or traffic management. This lets you download as much as you want, whenever you want, with your broadband speed acting as the only restricting factor. Some packages offer unlimited broadband without a fair usage policy but with traffic management to make sure that very heavy downloaders do not affect your connection at peak times.",
+        "color": "indigo-700"
+    }
+]
